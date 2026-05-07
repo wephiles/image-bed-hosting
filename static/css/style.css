@@ -1,0 +1,17 @@
+.card-img-top {
+    object-fit: cover;
+    height: 200px;
+    background: #f8f9fa;
+}
+.img-card {
+    transition: transform 0.2s;
+}
+.img-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+}
+.link-text {
+    font-size: 0.8rem;
+    word-break: break-all;
+}
+#image-table td { vertical-align: middle; }

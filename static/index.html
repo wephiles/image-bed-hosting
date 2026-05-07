@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图床管理</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="bg-light">
+<!-- 登录卡片 -->
+<div id="login-panel" class="container mt-5" style="max-width: 400px;">
+    <div class="card shadow">
+        <div class="card-body">
+            <h3 class="card-title text-center mb-3">图床登录</h3>
+            <div class="mb-3">
+                <label class="form-label">用户名</label>
+                <input type="text" class="form-control" id="username" value="admin" disabled>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">密码</label>
+                <input type="password" class="form-control" id="password" placeholder="输入管理员密码">
+            </div>
+            <button class="btn btn-primary w-100" id="login-btn">登录</button>
+            <div id="login-error" class="text-danger mt-2" style="display:none;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- 主管理面板（登录后可见） -->
+<div id="admin-panel" class="container my-4" style="display:none;">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>我的图床</h2>
+        <button class="btn btn-outline-danger" id="logout-btn">退出登录</button>
+    </div>
+
+    <!-- 上传区域 -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h5 class="card-title">上传新图片</h5>
+            <form id="upload-form" enctype="multipart/form-data">
+                <div class="input-group">
+                    <input type="file" class="form-control" id="file-input" accept="image/*" required>
+                    <button class="btn btn-success" type="submit">上传</button>
+                </div>
+                <small class="text-muted">支持 JPG、PNG、GIF，单文件最大 10MB</small>
+            </form>
+            <div id="upload-status" class="mt-2"></div>
+        </div>
+    </div>
+
+    <!--    &lt;!&ndash; 图片列表 &ndash;&gt;-->
+    <!--    <div id="image-list" class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-3">-->
+    <!--        &lt;!&ndash; 动态插入卡片 &ndash;&gt;-->
+    <!--    </div>-->
+    <!--    <div id="load-more" class="text-center my-3">-->
+    <!--        <button class="btn btn-outline-secondary" id="load-more-btn" style="display:none;">加载更多</button>-->
+    <!--    </div>-->
+    <div class="table-responsive">
+        <table class="table table-hover align-middle" id="image-table">
+            <thead class="table-light">
+            <tr>
+                <th style="width: 120px;">缩略图</th>
+                <th>文件名</th>
+                <th>文件大小</th>
+                <th>上传时间</th>
+                <th style="width: 400px;">操作</th>
+            </tr>
+            </thead>
+            <tbody id="image-list">
+            <!-- 动态插入表格行 -->
+            </tbody>
+        </table>
+    </div>
+    <div id="load-more" class="text-center my-3">
+        <button class="btn btn-outline-secondary" id="load-more-btn" style="display:none;">加载更多</button>
+    </div>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="/static/js/app.js"></script>
+</body>
+</html>
