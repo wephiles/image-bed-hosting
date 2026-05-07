@@ -32,14 +32,29 @@ def get_image_by_filename(db: Session, filename: str):
     return db.query(models.Image).filter(models.Image.filename == filename).first()
 
 
+# def delete_image(db: Session, image_id: int):
+#     db_image = db.query(models.Image).filter(models.Image.id == image_id).first()
+#     if db_image:
+#         # 删除原图和缩略图
+#         original_path = os.path.join(UPLOAD_DIR, db_image.filename)
+#         thumb_path = os.path.join(THUMB_DIR, db_image.filename)
+#         if os.path.exists(original_path):
+#             os.remove(original_path)
+#         if os.path.exists(thumb_path):
+#             os.remove(thumb_path)
+#         db.delete(db_image)
+#         db.commit()
+#     return db_image
+
 def delete_image(db: Session, image_id: int):
     db_image = db.query(models.Image).filter(models.Image.id == image_id).first()
     if db_image:
-        # 删除原图和缩略图
+        # 安全删除原图（如果存在）
         original_path = os.path.join(UPLOAD_DIR, db_image.filename)
-        thumb_path = os.path.join(THUMB_DIR, db_image.filename)
         if os.path.exists(original_path):
             os.remove(original_path)
+        # 安全删除缩略图（如果存在）
+        thumb_path = os.path.join(THUMB_DIR, db_image.filename)
         if os.path.exists(thumb_path):
             os.remove(thumb_path)
         db.delete(db_image)
